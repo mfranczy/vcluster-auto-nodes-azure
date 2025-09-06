@@ -1,8 +1,9 @@
 module "validation" {
   source = "./validation"
 
-  location       = var.vcluster.requirements["location"]
-  resource_group = var.vcluster.requirements["resource-group"]
+  location        = var.vcluster.requirements["location"]
+  resource_group  = var.vcluster.requirements["resource-group"]
+  subscription_id = try(var.vcluster.requirements["subscription-id"], null)
 }
 
 resource "random_id" "vm_suffix" {

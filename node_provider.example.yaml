@@ -21,6 +21,7 @@ spec:
         instance-type: Standard_D2s_v5
         location: "eastus"
         resource-group: "*"
+        subscription-id: "*"
     - name: standard-d4s-v5
       resources:
         cpu: "4"
@@ -29,6 +30,7 @@ spec:
         instance-type: Standard_D4s_v5
         location: "eastus"
         resource-group: "*"
+        subscription-id: "*"
     - name: standard-d8s-v5
       resources:
         cpu: "8"
@@ -37,6 +39,7 @@ spec:
         instance-type: Standard_D8s_v5
         location: "eastus"
         resource-group: "*"
+        subscription-id: "*"
     - name: standard-d16s-v5
       resources:
         cpu: "16"
@@ -45,4 +48,5 @@ spec:
         instance-type: Standard_D16s_v5
         location: "eastus"
         resource-group: "*"
+        subscription-id: "*"
     

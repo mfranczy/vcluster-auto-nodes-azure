@@ -24,9 +24,11 @@ provider "azurerm" {
   features {}
   use_cli                   = false
   use_aks_workload_identity = true
+  subscription_id           = module.validation.subscription_id
 }
 
 provider "azapi" {
   use_cli                   = false
   use_aks_workload_identity = true
+  subscription_id           = module.validation.subscription_id
 }

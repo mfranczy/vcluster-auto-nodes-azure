@@ -5,8 +5,9 @@ resource "random_id" "vnet_suffix" {
 module "validation" {
   source = "./validation"
 
-  location       = var.vcluster.requirements["location"]
-  resource_group = var.vcluster.requirements["resource-group"]
+  location        = var.vcluster.requirements["location"]
+  resource_group  = var.vcluster.requirements["resource-group"]
+  subscription_id = try(var.vcluster.requirements["subscription-id"], null)
 }
 
 module "regions" {
