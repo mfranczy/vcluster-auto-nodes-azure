@@ -2,6 +2,13 @@ resource "random_id" "vnet_suffix" {
   byte_length = 4
 }
 
+module "validation" {
+  source = "./validation"
+
+  location       = var.vcluster.requirements["location"]
+  resource_group = var.vcluster.requirements["resource-group"]
+}
+
 module "regions" {
   source  = "Azure/avm-utl-regions/azurerm"
   version = "~> 0.7"

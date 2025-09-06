@@ -1,3 +1,10 @@
+module "validation" {
+  source = "./validation"
+
+  location       = var.vcluster.requirements["location"]
+  resource_group = var.vcluster.requirements["resource-group"]
+}
+
 resource "random_id" "vm_suffix" {
   byte_length = 4
 }

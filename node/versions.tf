@@ -22,9 +22,11 @@ terraform {
 
 provider "azurerm" {
   features {}
-  use_cli = false
+  use_cli                   = false
+  use_aks_workload_identity = true
 }
 
 provider "azapi" {
-  use_cli = false
+  use_cli                   = false
+  use_aks_workload_identity = true
 }
