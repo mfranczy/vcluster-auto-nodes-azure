@@ -17,7 +17,8 @@ privateNodes:
       provider: ms-azure
       requirements:
       - property: instance-type
-        value: ["Standard_D2s_v5", "Standard_D4s_v5", "Standard_D8s_v5"]
+        operator: In
+        values: ["Standard_D2s_v5", "Standard_D4s_v5", "Standard_D8s_v5"]
 ```
 
 ## Overview
@@ -29,7 +30,7 @@ Terraform modules for Auto Nodes on Azure to dynamically provision VMs for vClus
 - Cost optimization - Only provision the exact resources needed
 - Simplified configuration - Define node requirements in your vcluster.yaml
 
-This quickstart NodeProvider isolates all nodes into separate VPCs by default.
+This quickstart NodeProvider isolates all nodes into separate Virtual Networks by default.
 
 Per virtual cluster, it'll create (see [Environment](./environment/)):
 
@@ -41,7 +42,7 @@ Per virtual cluster, it'll create (see [Environment](./environment/)):
 
 Per virtual cluster, it'll create (see [Node](./node/)):
 
-- An EC2 instance with the selected `instance-type`, attached to one of the private Subnets
+- An VM instance with the selected `instance-type`, attached to one of the private Subnets
 
 ## Getting started
 
@@ -57,7 +58,7 @@ Per virtual cluster, it'll create (see [Node](./node/)):
 
 #### Step 1: Configure Node Provider
 
-Define your Azure Node Provider in the vCluster Platform. This provider manages the lifecycle of EC2 instances.
+Define your Azure Node Provider in the vCluster Platform. This provider manages the lifecycle of Azure VM nodes.
 
 In the vCluster Platform UI, navigate to "Infra > Nodes", click on "Create Node Provider" and then use "Microsoft Azure".
 Specify a subscription ID in which all resources will be created. You can optionally set a default region and default resource group. This can still be changed on a per virtual cluster basis later on.
@@ -116,7 +117,8 @@ privateNodes:
       provider: ms-azure
       requirements:
       - property: instance-type
-        value: ["Standard_D2s_v5", "Standard_D4s_v5", "Standard_D8s_v5"]
+        operator: In
+        values: ["Standard_D2s_v5", "Standard_D4s_v5", "Standard_D8s_v5"]
       limits:
         cpu: "100"
         memory: "200Gi"

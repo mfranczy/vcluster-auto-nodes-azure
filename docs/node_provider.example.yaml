@@ -8,10 +8,12 @@ spec:
       git:
         repository: https://github.com/loft-sh/vcluster-auto-nodes-azure.git
         subPath: environment
+        branch: stable
     nodeTemplate:
       git:
         repository: https://github.com/loft-sh/vcluster-auto-nodes-azure.git
-      subPath: node
+        subPath: node
+        branch: stable
     nodeTypes:
     - name: standard-d2s-v5
       resources:
