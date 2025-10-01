@@ -15,6 +15,7 @@ variable "resource_group" {
   description = "The Azure resource group name"
 }
 
+
 provider "azurerm" {
   features {}
   use_cli                   = false

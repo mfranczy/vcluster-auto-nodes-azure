@@ -5,9 +5,13 @@ resource "random_id" "vnet_suffix" {
 module "validation" {
   source = "./validation"
 
-  location        = var.vcluster.requirements["location"]
-  resource_group  = var.vcluster.requirements["resource-group"]
-  subscription_id = try(var.vcluster.requirements["subscription-id"], null)
+  location        = var.vcluster.properties["location"]
+  resource_group  = var.vcluster.properties["resource-group"]
+  subscription_id = try(var.vcluster.properties["subscription-id"], null)
+}
+
+data "azurerm_resource_group" "current" {
+  name = local.resource_group_name
 }
 
 module "regions" {
@@ -50,10 +54,10 @@ module "vnet" {
   source  = "Azure/avm-res-network-virtualnetwork/azurerm"
   version = "~> 0.10"
 
-  name                = local.vnet_name
-  location            = local.location
-  resource_group_name = local.resource_group_name
-  address_space       = [local.vnet_cidr_block]
+  name          = local.vnet_name
+  location      = local.location
+  parent_id     = data.azurerm_resource_group.current.id
+  address_space = [local.vnet_cidr_block]
 
   subnets = merge(
     # Public subnets
@@ -86,4 +90,3 @@ module "vnet" {
 
   depends_on = [azurerm_network_security_group.workers, module.nat_gateway]
 }
-
