@@ -29,6 +29,7 @@ module "kubernetes_apply_ccm" {
 
   template_vars = {
     vcluster_name = local.vcluster_name
+    node_provider_name  = local.node_provider_name
   }
 
   depends_on = [module.kubernetes_apply_config]
@@ -41,6 +42,10 @@ module "kubernetes_apply_ccm" {
 module "kubernetes_apply_cnm" {
   source        = "./apply"
   manifest_file = "${path.module}/manifests/cnm.yaml.tftpl"
+
+  template_vars = {
+    node_provider_name  = local.node_provider_name
+  }
 }
 
 ##########
@@ -58,6 +63,10 @@ module "kubernetes_apply_csi" {
   ])
 
   manifest_file = each.value
+
+  template_vars = {
+    node_provider_name  = local.node_provider_name
+  }
 
   depends_on = [module.kubernetes_apply_config]
 }
