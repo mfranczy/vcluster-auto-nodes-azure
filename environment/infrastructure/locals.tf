@@ -6,7 +6,7 @@ locals {
   resource_group_name = nonsensitive(module.validation.resource_group)
   resource_group_id   = data.azurerm_resource_group.current.id
 
-  vnet_cidr_block = "10.0.0.0/16"
+  vnet_cidr_block = try(var.vcluster.properties["vcluster.com/vpc-cidr"], "10.0.0.0/16")
 
   # Use 2 AZs if available
   azs = try(
